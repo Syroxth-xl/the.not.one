@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The not ONE</title>
-    <!-- Import d'une police brute / typewriter style -->
+    <!-- Import de la police Courier Prime -->
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -37,7 +37,7 @@
             transition: opacity 2s ease-out, visibility 2s ease-out;
         }
 
-        /* Texte qui part de l'infiniment petit et invisible */
+        /* Texte invisible et microscopique au départ */
         #intro-text {
             font-size: clamp(1.5rem, 4vw, 3rem);
             font-weight: 400;
@@ -45,7 +45,7 @@
             color: #E0E0E0;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
             opacity: 0;
-            transform: scale(0.01);
+            transform: scale(0.001);
             animation: emergeFromVoid 7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
@@ -56,18 +56,17 @@
             text-shadow: 0 0 35px rgba(255, 255, 255, 0.4);
         }
 
-        /* Animation lente : surgit de nulle part et grandit jusqu'à sa taille normale */
         @keyframes emergeFromVoid {
             0% {
                 opacity: 0;
-                transform: scale(0.005);
-                filter: blur(15px);
+                transform: scale(0.001);
+                filter: blur(20px);
             }
-            15% {
-                opacity: 0.2;
-                filter: blur(8px);
+            20% {
+                opacity: 0.3;
+                filter: blur(10px);
             }
-            50% {
+            60% {
                 opacity: 1;
                 filter: blur(0px);
             }
@@ -78,8 +77,8 @@
             }
             100% {
                 opacity: 0;
-                transform: scale(1.15);
-                filter: blur(8px);
+                transform: scale(1.2);
+                filter: blur(10px);
             }
         }
 
@@ -109,7 +108,7 @@
             font-family: inherit;
             font-size: 0.75rem;
             letter-spacing: 0.2em;
-      v      cursor: pointer;
+            cursor: pointer;
             transition: all 0.4s ease;
         }
 
@@ -137,7 +136,6 @@
         const voidContent = document.getElementById('void-content');
 
         function startSequence() {
-            // Correspond à la durée totale avant la disparition (environ 6.5 secondes)
             setTimeout(() => {
                 introScreen.style.opacity = '0';
                 introScreen.style.visibility = 'hidden';
