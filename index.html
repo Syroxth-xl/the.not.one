@@ -18,7 +18,8 @@
             background-color: #030303;
             color: #F5F5F7;
             font-family: 'Courier Prime', Courier, monospace;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -109,7 +110,6 @@
             50% { opacity: 1; }
         }
 
-        /* Conteneur de la boîte pixel art */
         .pixel-box-btn {
             background: none;
             border: none;
@@ -127,7 +127,6 @@
             transform: scale(0.95);
         }
 
-        /* Animation de tremblement à l'ouverture */
         .shake-open {
             animation: boxShake 0.45s steps(2) forwards;
         }
@@ -147,39 +146,52 @@
             filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.9));
         }
 
-        /* --- ÉCRAN 3 : CONTENU DE LA PAGE --- */
+        /* --- ÉCRAN 3 : CONTENU DE LA PAGE (TEXTE SUR LE VIDE) --- */
         #void-content {
-            text-align: center;
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            text-align: left;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 1.5s ease-in;
-            padding: 20px;
-            max-width: 600px;
+            transition: opacity 1.8s ease-in;
+            padding: 60px 20px;
+            display: none;
         }
 
         #void-content.visible {
             opacity: 1;
             visibility: visible;
+            display: block;
         }
 
         .void-title {
-            font-size: 1.2rem;
-            letter-spacing: 0.35em;
-            color: #F5F5F7;
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            letter-spacing: 0.4em;
+            color: #FFFFFF;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-weight: 700;
         }
 
-        .subtitle {
-            font-size: 0.85rem;
-            color: #555555;
-            letter-spacing: 0.2em;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
+        .void-text {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #A0A0A5;
+            letter-spacing: 0.08em;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .footer-action {
+            text-align: center;
+            margin-top: 4rem;
+            padding-bottom: 2rem;
         }
 
         .replay-btn {
             background: transparent;
-            border: 1px solid #1f1f1f;
+            border: 1px solid #222222;
             color: #666666;
             padding: 8px 18px;
             font-family: inherit;
@@ -192,6 +204,7 @@
         .replay-btn:hover {
             border-color: #F5F5F7;
             color: #F5F5F7;
+            box-shadow: 0 0 12px rgba(245, 245, 247, 0.15);
         }
     </style>
 </head>
@@ -206,30 +219,41 @@
     <div id="box-stage">
         <p class="prompt-text">[ CLIQUE SUR LA BOÎTE POUR OUVRIR ]</p>
         <button class="pixel-box-btn" id="cardboard-box" onclick="openBox()" aria-label="Ouvrir la boîte">
-            <!-- Dessin pixel-art 16x16 d'une boîte en carton -->
             <svg class="pixel-svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
-                <!-- Contour noir -->
                 <path fill="#14100d" d="M3 2h10v1h1v1h1v9h-1v1H2v-1H1V4h1V3h1V2z"/>
-                <!-- Dessus de la boîte (carton clair) -->
                 <path fill="#c89d6c" d="M3 3h10v1h1v1H2V4h1V3z"/>
-                <!-- Face avant (carton moyen) -->
                 <path fill="#a67b4f" d="M2 5h12v8H2V5z"/>
-                <!-- Ombre côté droit et bas -->
                 <path fill="#825b36" d="M12 5h2v8h-2V5zM2 12h12v1H2v-1z"/>
-                <!-- Ruban adhésif (scotch) sur le dessus et le devant -->
                 <path fill="#e3cca8" d="M7 3h2v4H7V3z"/>
                 <path fill="#bfa37a" d="M7 5h2v2H7V5z"/>
-                <!-- Détail pliure -->
                 <path fill="#634224" d="M2 5h12v1H2V5z"/>
             </svg>
         </button>
     </div>
 
-    <!-- 3. CONTENU RÉVÉLÉ -->
+    <!-- 3. CONTENU RÉVÉLÉ (TEXTE SUR LE VIDE) -->
     <main id="void-content">
-        <h2 class="void-title">THE NOT ONE</h2>
-        <p class="subtitle">[ 0x00 — LA BOÎTE ÉTAIT VIDE... OU PRESQUE. ]</p>
-        <button class="replay-btn" onclick="replayAll()">REJOUER</button>
+        <h2 class="void-title">[ THE NOT ONE — MANIFESTE DU VIDE ]</h2>
+        
+        <p class="void-text">
+            Le vide n’est pas simplement une absence de matière ou un espace vide de tout objet ; il possède sa propre consistance, une force silencieuse qui attire et enveloppe tout ce qui s'en approche. Dans un monde saturé de bruits, de flux continus de données et d'agitation perpétuelle, le néant représente le seul véritable refuge. C'est un état de repos absolu où le temps suspend son cours, un espace où les repères s'effacent pour laisser place à une clarté dépouillée de tout artifice.
+        </p>
+
+        <p class="void-text">
+            L’esthétique du vide repose sur le refus de l’inutile. Tout ce qui est superflu est impitoyablement retranché pour ne conserver que l'essentiel, une structure mise à nu, semblable à une carcasse métallique dans la nuit ou à une ligne de code pure gravée dans le noir. Ce minimalisme radical n’est pas triste ; il est libérateur. Il s’affranchit du superflu pour regarder en face ce qui reste lorsque le bruit du monde s’éteint.
+        </p>
+
+        <p class="void-text">
+            Dans cette pénombre, le concept de « rien » devient paradoxalement un espace de toutes les possibilités. C'est le point zéro, l'instant précis avant l'impulsion, là où rien n'existe encore mais où tout peut potentiellement surgir. C'est l'endroit où l'on se retire pour observer le monde de l'extérieur, protégé par le silence et l'obscurité, loin des structures imposées et des regards normatifs.
+        </p>
+
+        <p class="void-text">
+            Ainsi, explorer le vide, c'est accepter de faire face au silence. C'est comprendre que ce qui n'est pas écrit, ce qui n'est pas montré et ce qui est gardé secret a souvent beaucoup plus de valeur que ce qui s'étale en pleine lumière. C'est l'essence même de ce qui se cache derrière chaque ligne invisible, attendant simplement d'être révélé.
+        </p>
+
+        <div class="footer-action">
+            <button class="replay-btn" onclick="replayAll()">REJOUER L'INTRODUCTION</button>
+        </div>
     </main>
 
     <script>
@@ -248,7 +272,6 @@
         }
 
         function openBox() {
-            // Évite les doubles clics pendant l'animation
             if (cardboardBox.classList.contains('shake-open')) return;
             
             cardboardBox.classList.add('shake-open');
@@ -256,6 +279,7 @@
             setTimeout(() => {
                 boxStage.classList.remove('visible');
                 voidContent.classList.add('visible');
+                window.scrollTo(0, 0);
             }, 450);
         }
 
