@@ -1,1 +1,1 @@
-# the.not.one.github.io
+# the.not.one
