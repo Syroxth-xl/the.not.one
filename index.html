@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The not ONE</title>
-    <!-- Import de la police Courier Prime -->
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -26,6 +25,7 @@
             user-select: none;
         }
 
+        /* --- ÉCRAN 1 : INTRO --- */
         #intro-screen {
             position: fixed;
             inset: 0;
@@ -33,124 +33,243 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 10;
-            transition: opacity 2s ease-out, visibility 2s ease-out;
+            z-index: 20;
+            transition: opacity 1.5s ease-out, visibility 1.5s ease-out;
         }
 
-        /* Texte invisible et microscopique au départ */
         #intro-text {
             font-size: clamp(1.5rem, 4vw, 3rem);
-            font-weight: 400;
             letter-spacing: 0.4em;
             color: #E0E0E0;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-            opacity: 0;
-            transform: scale(0.001);
-            animation: emergeFromVoid 7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            opacity: 1;
+            transform: scale(0.02);
+            animation: growFromNothing 6s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
         }
 
         #intro-text span {
             font-weight: 700;
             letter-spacing: 0.5em;
             color: #FFFFFF;
-            text-shadow: 0 0 35px rgba(255, 255, 255, 0.4);
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
         }
 
-        @keyframes emergeFromVoid {
+        @keyframes growFromNothing {
             0% {
-                opacity: 0;
-                transform: scale(0.001);
-                filter: blur(20px);
+                transform: scale(0.02);
+                letter-spacing: 0.8em;
+                filter: blur(8px);
             }
-            20% {
-                opacity: 0.3;
-                filter: blur(10px);
-            }
-            60% {
-                opacity: 1;
+            70% {
+                transform: scale(1);
+                letter-spacing: 0.4em;
                 filter: blur(0px);
+                opacity: 1;
             }
             85% {
                 opacity: 1;
-                transform: scale(1);
-                filter: blur(0px);
+                transform: scale(1.05);
             }
             100% {
                 opacity: 0;
-                transform: scale(1.2);
+                transform: scale(1.3);
                 filter: blur(10px);
             }
         }
 
+        /* --- ÉCRAN 2 : LA BOÎTE EN CARTON PIXELISÉE --- */
+        #box-stage {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease-in, visibility 1.5s ease-in;
+            z-index: 10;
+        }
+
+        #box-stage.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .prompt-text {
+            font-size: 0.85rem;
+            color: #777777;
+            letter-spacing: 0.25em;
+            margin-bottom: 2rem;
+            animation: pulseText 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Conteneur de la boîte pixel art */
+        .pixel-box-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            transition: transform 0.2s steps(2);
+            outline: none;
+        }
+
+        .pixel-box-btn:hover {
+            transform: scale(1.08) translateY(-4px);
+        }
+
+        .pixel-box-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Animation de tremblement à l'ouverture */
+        .shake-open {
+            animation: boxShake 0.45s steps(2) forwards;
+        }
+
+        @keyframes boxShake {
+            0% { transform: translate(0, 0) scale(1.1); }
+            25% { transform: translate(-6px, 2px) scale(1.15); }
+            50% { transform: translate(6px, -2px) scale(1.2); }
+            75% { transform: translate(-4px, -4px) scale(1.25); opacity: 0.8; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+
+        .pixel-svg {
+            width: 110px;
+            height: 110px;
+            image-rendering: pixelated;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.9));
+        }
+
+        /* --- ÉCRAN 3 : CONTENU DE LA PAGE --- */
         #void-content {
             text-align: center;
             opacity: 0;
-            transition: opacity 2.5s ease-in;
+            visibility: hidden;
+            transition: opacity 1.5s ease-in;
             padding: 20px;
+            max-width: 600px;
         }
 
         #void-content.visible {
             opacity: 1;
+            visibility: visible;
+        }
+
+        .void-title {
+            font-size: 1.2rem;
+            letter-spacing: 0.35em;
+            color: #F5F5F7;
+            margin-bottom: 1rem;
         }
 
         .subtitle {
             font-size: 0.85rem;
-            color: #444444;
-            letter-spacing: 0.25em;
+            color: #555555;
+            letter-spacing: 0.2em;
             margin-bottom: 2.5rem;
+            line-height: 1.6;
         }
 
         .replay-btn {
             background: transparent;
-            border: 1px solid #1a1a1a;
-            color: #555555;
+            border: 1px solid #1f1f1f;
+            color: #666666;
             padding: 8px 18px;
             font-family: inherit;
             font-size: 0.75rem;
             letter-spacing: 0.2em;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
 
         .replay-btn:hover {
-            border-color: #E0E0E0;
-            color: #E0E0E0;
-            box-shadow: 0 0 15px rgba(245, 245, 247, 0.1);
+            border-color: #F5F5F7;
+            color: #F5F5F7;
         }
     </style>
 </head>
 <body>
 
+    <!-- 1. INTRO -->
     <div id="intro-screen">
         <h1 id="intro-text">The not <span>ONE</span></h1>
     </div>
 
+    <!-- 2. BOÎTE EN CARTON PIXELISÉE -->
+    <div id="box-stage">
+        <p class="prompt-text">[ CLIQUE SUR LA BOÎTE POUR OUVRIR ]</p>
+        <button class="pixel-box-btn" id="cardboard-box" onclick="openBox()" aria-label="Ouvrir la boîte">
+            <!-- Dessin pixel-art 16x16 d'une boîte en carton -->
+            <svg class="pixel-svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                <!-- Contour noir -->
+                <path fill="#14100d" d="M3 2h10v1h1v1h1v9h-1v1H2v-1H1V4h1V3h1V2z"/>
+                <!-- Dessus de la boîte (carton clair) -->
+                <path fill="#c89d6c" d="M3 3h10v1h1v1H2V4h1V3z"/>
+                <!-- Face avant (carton moyen) -->
+                <path fill="#a67b4f" d="M2 5h12v8H2V5z"/>
+                <!-- Ombre côté droit et bas -->
+                <path fill="#825b36" d="M12 5h2v8h-2V5zM2 12h12v1H2v-1z"/>
+                <!-- Ruban adhésif (scotch) sur le dessus et le devant -->
+                <path fill="#e3cca8" d="M7 3h2v4H7V3z"/>
+                <path fill="#bfa37a" d="M7 5h2v2H7V5z"/>
+                <!-- Détail pliure -->
+                <path fill="#634224" d="M2 5h12v1H2V5z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- 3. CONTENU RÉVÉLÉ -->
     <main id="void-content">
-        <p class="subtitle">[ 0x00 — NOTHING HERE ]</p>
-        <button class="replay-btn" onclick="replayIntro()">REPLAY</button>
+        <h2 class="void-title">THE NOT ONE</h2>
+        <p class="subtitle">[ 0x00 — LA BOÎTE ÉTAIT VIDE... OU PRESQUE. ]</p>
+        <button class="replay-btn" onclick="replayAll()">REJOUER</button>
     </main>
 
     <script>
         const introScreen = document.getElementById('intro-screen');
         const introText = document.getElementById('intro-text');
+        const boxStage = document.getElementById('box-stage');
+        const cardboardBox = document.getElementById('cardboard-box');
         const voidContent = document.getElementById('void-content');
 
         function startSequence() {
             setTimeout(() => {
                 introScreen.style.opacity = '0';
                 introScreen.style.visibility = 'hidden';
-                voidContent.classList.add('visible');
-            }, 6500);
+                boxStage.classList.add('visible');
+            }, 5500);
         }
 
-        function replayIntro() {
+        function openBox() {
+            // Évite les doubles clics pendant l'animation
+            if (cardboardBox.classList.contains('shake-open')) return;
+            
+            cardboardBox.classList.add('shake-open');
+
+            setTimeout(() => {
+                boxStage.classList.remove('visible');
+                voidContent.classList.add('visible');
+            }, 450);
+        }
+
+        function replayAll() {
             voidContent.classList.remove('visible');
+            boxStage.classList.remove('visible');
+            cardboardBox.classList.remove('shake-open');
+
             introScreen.style.visibility = 'visible';
             introScreen.style.opacity = '1';
 
             introText.style.animation = 'none';
-            introText.offsetHeight; 
-            introText.style.animation = 'emergeFromVoid 7s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+            introText.offsetHeight;
+            introText.style.animation = 'growFromNothing 6s cubic-bezier(0.15, 0.85, 0.35, 1) forwards';
 
             startSequence();
         }
