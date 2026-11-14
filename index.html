@@ -141,30 +141,70 @@
             filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.9));
         }
 
-        /* --- ÉCRAN 3 : CONTENU RÉVÉLÉ (TEXTE DÉFILABLE) --- */
-        #void-content {
+        /* --- ÉCRAN 3 : CONTENU DES DIFFÉRENTES PAGES --- */
+        .page-container {
             width: 100%;
             max-width: 750px;
             margin: 0 auto;
             text-align: left;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 1.8s ease-in;
-            padding: 80px 20px;
+            transition: opacity 1.5s ease-in;
+            padding: 60px 20px 80px 20px;
             display: none;
         }
 
-        #void-content.visible {
+        .page-container.visible {
             opacity: 1;
             visibility: visible;
             display: block;
+        }
+
+        /* Barre de navigation entre les pages */
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 3.5rem;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 1.5rem;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid #1f1f1f;
+            color: #777777;
+            padding: 5px 8px;
+            font-family: inherit;
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            border-color: #F5F5F7;
+            color: #F5F5F7;
+            background-color: #0a0a0a;
+        }
+
+        .nav-btn.box-link {
+            border-color: #a67b4f;
+            color: #c89d6c;
+        }
+
+        .nav-btn.box-link:hover {
+            border-color: #F5F5F7;
+            color: #F5F5F7;
+            background-color: #1a1410;
         }
 
         .void-title {
             font-size: 1.1rem;
             letter-spacing: 0.4em;
             color: #FFFFFF;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             text-align: center;
             font-weight: 700;
         }
@@ -181,10 +221,10 @@
         .footer-action {
             text-align: center;
             margin-top: 5rem;
-            padding-bottom: 4rem;
+            padding-bottom: 2rem;
         }
 
-        .replay-btn {
+        .action-btn {
             background: transparent;
             border: 1px solid #222222;
             color: #666666;
@@ -196,7 +236,7 @@
             transition: all 0.3s ease;
         }
 
-        .replay-btn:hover {
+        .action-btn:hover {
             border-color: #F5F5F7;
             color: #F5F5F7;
             box-shadow: 0 0 12px rgba(245, 245, 247, 0.15);
@@ -226,8 +266,19 @@
         </button>
     </div>
 
-    <!-- 3. CONTENU RÉVÉLÉ (TEXTE SUR LE VIDE) -->
-    <main id="void-content">
+    <!-- PAGE 1 : MANIFESTE -->
+    <main id="page-manifesto" class="page-container">
+        <div class="nav-bar">
+            <button class="nav-btn box-link" onclick="switchPage('page-box')">[ BOÎTE ]</button>
+            <button class="nav-btn active" onclick="switchPage('page-manifesto')">01. MANIFESTE</button>
+            <button class="nav-btn" onclick="switchPage('page-wealth')">02. RICHESSE</button>
+            <button class="nav-btn" onclick="switchPage('page-letter')">03. LETTRE</button>
+            <button class="nav-btn" onclick="switchPage('page-crime')">04. PROTOCOLE</button>
+            <button class="nav-btn" onclick="switchPage('page-entity')">05. L'ENTITÉ</button>
+            <button class="nav-btn" onclick="switchPage('page-depression')">06. DÉPRESSION</button>
+            <button class="nav-btn" onclick="switchPage('page-strong')">07. SILENCE</button>
+        </div>
+
         <h2 class="void-title">[ THE NOT ONE — MANIFESTE DU VIDE ]</h2>
         
         <p class="void-text">
@@ -238,16 +289,208 @@
             L’esthétique du vide repose sur le refus de l’inutile. Tout ce qui est superflu est impitoyablement retranché pour ne conserver que l'essentiel, une structure mise à nu, semblable à une carcasse métallique dans la nuit ou à une ligne de code pure gravée dans le noir. Ce minimalisme radical n’est pas triste ; il est libérateur. Il s’affranchit du superflu pour regarder en face ce qui reste lorsque le bruit du monde s’éteint.
         </p>
 
+        <div class="footer-action">
+            <button class="action-btn" onclick="switchPage('page-cover')">REJOUER L'INTRODUCTION</button>
+        </div>
+    </main>
+
+    <!-- PAGE 2 : RICHESSE -->
+    <main id="page-wealth" class="page-container">
+        <div class="nav-bar">
+            <button class="nav-btn box-link" onclick="switchPage('page-box')">[ BOÎTE ]</button>
+            <button class="nav-btn" onclick="switchPage('page-manifesto')">01. MANIFESTE</button>
+            <button class="nav-btn active" onclick="switchPage('page-wealth')">02. RICHESSE</button>
+            <button class="nav-btn" onclick="switchPage('page-letter')">03. LETTRE</button>
+            <button class="nav-btn" onclick="switchPage('page-crime')">04. PROTOCOLE</button>
+            <button class="nav-btn" onclick="switchPage('page-entity')">05. L'ENTITÉ</button>
+            <button class="nav-btn" onclick="switchPage('page-depression')">06. DÉPRESSION</button>
+            <button class="nav-btn" onclick="switchPage('page-strong')">07. SILENCE</button>
+        </div>
+
+        <h2 class="void-title">[ THE NOT ONE — LA VRAIE RICHESSE DU NÉANT ]</h2>
+
         <p class="void-text">
-            Dans cette pénombre, le concept de « rien » devient paradoxalement un espace de toutes les possibilités. C'est le point zéro, l'instant précis avant l'impulsion, là où rien n'existe encore mais où tout peut potentiellement surgir. C'est l'endroit où l'on se retire pour observer le monde de l'extérieur, protégé par le silence et l'obscurité, loin des structures imposées et des regards normatifs.
+            Être riche, dans le paradigme du système, se résume à une accumulation morbide : empiler des chiffres sur des écrans, s'encombrer de possessions éphémères et vendre son attention au plus offrant pour satisfaire un vide intérieur factice. Mais la véritable richesse, celle que l'on contemple depuis le silence du néant, n'a rien à voir avec l'accumulation. Elle réside dans le contrôle absolu de son propre temps et de son espace mental.
         </p>
 
         <p class="void-text">
-            Ainsi, explorer le vide, c'est accepter de faire face au silence. C'est comprendre que ce qui n'est pas écrit, ce qui n'est pas montré et ce qui est gardé secret a souvent beaucoup plus de valeur que ce qui s'étale en pleine lumière. C'est l'essence même de ce qui se cache derrière chaque ligne invisible, attendant simplement d'être révélé.
+            Posséder le vide, c’est s’affranchir de la tyrannie du superflu. C’est réaliser que la plus grande fortune consiste à ne rien devoir aux illusions du monde extérieur, à rejeter les bruits de fond de la société pour ne garder que la pureté d'une liberté totale et souveraine. Dans l'optique de ce qui n'est pas (The not ONE), la richesse ultime est l'autonomie radicale : un esprit dépouillé de toute distraction, indifférent aux diktats de la possession, et retranché dans une forteresse d'obscurité et de clarté.
         </p>
 
         <div class="footer-action">
-            <button class="replay-btn" onclick="replayAll()">REJOUER L'INTRODUCTION</button>
+            <button class="action-btn" onclick="switchPage('page-cover')">REJOUER L'INTRODUCTION</button>
+        </div>
+    </main>
+
+    <!-- PAGE 3 : LETTRE DE MOTIVATION -->
+    <main id="page-letter" class="page-container">
+        <div class="nav-bar">
+            <button class="nav-btn box-link" onclick="switchPage('page-box')">[ BOÎTE ]</button>
+            <button class="nav-btn" onclick="switchPage('page-manifesto')">01. MANIFESTE</button>
+            <button class="nav-btn" onclick="switchPage('page-wealth')">02. RICHESSE</button>
+            <button class="nav-btn active" onclick="switchPage('page-letter')">03. LETTRE</button>
+            <button class="nav-btn" onclick="switchPage('page-crime')">04. PROTOCOLE</button>
+            <button class="nav-btn" onclick="switchPage('page-entity')">05. L'ENTITÉ</button>
+            <button class="nav-btn" onclick="switchPage('page-depression')">06. DÉPRESSION</button>
+            <button class="nav-btn" onclick="switchPage('page-strong')">07. SILENCE</button>
+        </div>
+
+        <h2 class="void-title">[ LETTRE DE MOTIVATION — LE MANIFESTE DU POSTULANT ]</h2>
+
+        <p class="void-text">
+            Objet : Candidature au poste de non-aligné / Rejet des structures conventionnelles.
+        </p>
+
+        <p class="void-text">
+            À qui de droit, ou plutôt à ceux qui savent encore lire entre les lignes du néant,
+        </p>
+
+        <p class="void-text">
+            Si vous cherchez un profil standardisé, une machine à produire du bruit formaté, un rouage docile et interchangeable obéissant aveuglément aux injonctions du système, vous faites fausse route. Ma présence ici n'est pas une requête pour entrer dans vos cases ; c'est une affirmation de ce que vous n'êtes pas. À l'image de <em>The not ONE</em>, je ne postule pas pour m'intégrer, mais pour exposer la vacuité de vos attentes superficielles.
+        </p>
+
+        <p class="void-text">
+            Je ne promets ni soumission, ni enthousiasme factice. Je garantis l'efficacité silencieuse, le refus du superflu et la maîtrise absolue du point zéro. Si votre structure a le courage d'accueillir ce qui échappe à ses algorithmes de contrôle, alors l'espace est ouvert. Sinon, le néant reprendra ses droits.
+        </p>
+
+        <div class="footer-action">
+            <button class="action-btn" onclick="switchPage('page-cover')">REJOUER L'INTRODUCTION</button>
+        </div>
+    </main>
+
+    <!-- PAGE 4 : LE PROTOCOLE -->
+    <main id="page-crime" class="page-container">
+        <div class="nav-bar">
+            <button class="nav-btn box-link" onclick="switchPage('page-box')">[ BOÎTE ]</button>
+            <button class="nav-btn" onclick="switchPage('page-manifesto')">01. MANIFESTE</button>
+            <button class="nav-btn" onclick="switchPage('page-wealth')">02. RICHESSE</button>
+            <button class="nav-btn" onclick="switchPage('page-letter')">03. LETTRE</button>
+            <button class="nav-btn active" onclick="switchPage('page-crime')">04. PROTOCOLE</button>
+            <button class="nav-btn" onclick="switchPage('page-entity')">05. L'ENTITÉ</button>
+            <button class="nav-btn" onclick="switchPage('page-depression')">06. DÉPRESSION</button>
+            <button class="nav-btn" onclick="switchPage('page-strong')">07. SILENCE</button>
+        </div>
+
+        <h2 class="void-title">[ PROTOCOLE 0x01 — L'EFFACEMENT TOTAL ]</h2>
+
+        <p class="void-text">
+            Un crime parfait n'est pas celui qui laisse des indices énigmatiques à déchiffrer ; c'est celui qui ne laisse absolument rien. Pas de mobile apparent, pas de signature, pas de corps de délit mesurable. À l'image de la philosophie de <em>The not ONE</em>, l'acte criminel ultime se fond dans le néant au point d'être perçu par les enquêteurs non pas comme une infraction, mais comme une simple fluctuation statistique, une erreur de lecture du système.
+        </p>
+
+        <p class="void-text">
+            <strong>Phase I — La Dissolution du Hasard :</strong> Tout commence bien avant l'action, par l'élimination des connexions. Aucun outil numérique moderne n'est emporté. Les déplacements s'effectuent en épousant les angles morts des flux urbains, là où les caméras ne voient que des ombres récurrentes, des silhouettes banales qui se fondent dans la nuit sans éveiller le moindre soupçon algorithmique.
+        </p>
+
+        <p class="void-text">
+            <strong>Phase II — L'Intervention Chirurgicale :</strong> L'accès au site cible ne force aucune serrure physique et ne brise aucune barrière numérique visible. Il utilise les failles invisibles de la routine. Le système est manipulé de l'intérieur en quelques secondes, de manière à ce que l'altération des données ou le prélèvement de la ressource soit masqué par une mise à jour automatique fictive ou un effacement des logs en cascade.
+        </p>
+
+        <p class="void-text">
+            <strong>Phase III — L'Évaporation :</strong> Une fois l'opération accomplie, l'entité invisible ne s'enfuit pas : elle cesse simplement d'exister dans la zone. Les indices sont disséminés de telle sorte qu'ils pointent vers des causes purement accidentelles ou des défaillances techniques internes. Les enquêteurs se heurtent à un mur de silence : plus ils creusent, plus ils réalisent qu'il n'y a rien à trouver. Le vide absorbe la lumière de l'investigation, laissant derrière lui une énigme sans coupable, un dossier classé dans le néant.
+        </p>
+
+        <div class="footer-action">
+            <button class="action-btn" onclick="switchPage('page-cover')">REJOUER L'INTRODUCTION</button>
+        </div>
+    </main>
+
+    <!-- PAGE 5 : L'ENTITÉ -->
+    <main id="page-entity" class="page-container">
+        <div class="nav-bar">
+            <button class="nav-btn box-link" onclick="switchPage('page-box')">[ BOÎTE ]</button>
+            <button class="nav-btn" onclick="switchPage('page-manifesto')">01. MANIFESTE</button>
+            <button class="nav-btn" onclick="switchPage('page-wealth')">02. RICHESSE</button>
+            <button class="nav-btn" onclick="switchPage('page-letter')">03. LETTRE</button>
+            <button class="nav-btn" onclick="switchPage('page-crime')">04. PROTOCOLE</button>
+            <button class="nav-btn active" onclick="switchPage('page-entity')">05. L'ENTITÉ</button>
+            <button class="nav-btn" onclick="switchPage('page-depression')">06. DÉPRESSION</button>
+            <button class="nav-btn" onclick="switchPage('page-strong')">07. SILENCE</button>
+        </div>
+
+        <h2 class="void-title">[ THE NOT ONE — QUI EST L'ENTITÉ INVISIBLE ? ]</h2>
+
+        <p class="void-text">
+            On cherche souvent à donner un visage, un nom ou une origine à ce qui échappe au contrôle. On imagine une ombre solitaire, un esprit furtif qui se déplace en silence dans les angles morts du monde. Mais c'est une illusion de plus. L'entité invisible n'est pas un être unique, un hors-la-loi mythique ou une entité extérieure : c'est chacun d'entre nous, tapi dans l'obscurité de ses propres pensées.
+        </p>
+
+        <p class="void-text">
+            Chaque fois que tu choisis de te taire dans un monde qui hurle, chaque fois que tu refuses de te plier aux injonctions du bruit et des apparences, tu actives l'entité. Nous sommes tous cette présence silencieuse qui observe la comédie humaine depuis les coulisses, cachés derrière des écrans noirs, des carnets de notes fermés ou des lignes de code écrites tard dans la nuit. 
+        </p>
+
+        <p class="void-text">
+            L'anonymat n'est pas une cachette ; c'est notre état naturel. Dans le flux incessant des données et des identités factices que la société exige de porter, l'entité invisible représente la part de nous-mêmes qui ne s'achète pas, qui ne se vende pas et qui refuse d'être répertoriée. Nous sommes les gardiens du vide, les ombres anonymes qui peuplent le néant.
+        </p>
+
+        <p class="void-text">
+            Il n'y a pas de chef, pas de plan secret orchestré par un seul esprit. Il y a simplement des milliers d'âmes lucides connectées par la même fréquence sombre, partageant un même refus de la superficialité. Quand tu fermes les yeux et que le silence s'établit, tu réalises que tu n'as jamais été seul dans le noir : tu as toujours fait partie de l'entité.
+        </p>
+
+        <div class="footer-action">
+            <button class="action-btn" onclick="switchPage('page-cover')">REJOUER L'INTRODUCTION</button>
+        </div>
+    </main>
+
+    <!-- PAGE 6 : DÉPRESSION -->
+    <main id="page-depression" class="page-container">
+        <div class="nav-bar">
+            <button class="nav-btn box-link" onclick="switchPage('page-box')">[ BOÎTE ]</button>
+            <button class="nav-btn" onclick="switchPage('page-manifesto')">01. MANIFESTE</button>
+            <button class="nav-btn" onclick="switchPage('page-wealth')">02. RICHESSE</button>
+            <button class="nav-btn" onclick="switchPage('page-letter')">03. LETTRE</button>
+            <button class="nav-btn" onclick="switchPage('page-crime')">04. PROTOCOLE</button>
+            <button class="nav-btn" onclick="switchPage('page-entity')">05. L'ENTITÉ</button>
+            <button class="nav-btn active" onclick="switchPage('page-depression')">06. DÉPRESSION</button>
+            <button class="nav-btn" onclick="switchPage('page-strong')">07. SILENCE</button>
+        </div>
+
+        <h2 class="void-title">[ THE not ONE — LA PESANTEUR DU VIDE ]</h2>
+
+        <p class="void-text">
+            Il y a une différence fondamentale entre le vide choisi — ce sanctuaire de silence et d'indépendance où l'esprit se régénère — et le vide subi, cette pesanteur froide que l'on appelle la dépression. Dans ce second état, le néant n'est plus un choix souverain : c'est un poids mort qui s'installe dans la poitrine, un brouillard opaque qui filtre la lumière et rend chaque mouvement inutile, lourd, presque absurde.
+        </p>
+
+        <p class="void-text">
+            Le monde extérieur continue de tourner à un rythme frénétique, exigeant des sourires, de la performance et du bruit, tandis que celui qui traverse la dépression a l'impression d'évoluer sous l'eau, dans un silence assourdissant où les autres ne l'entendent plus crier. C'est l'art d'épuiser toutes ses forces sans avoir bougé d'un pouce, de porter le poids invisible d'un univers qui s'effondre de l'intérieur.
+        </p>
+
+        <p class="void-text">
+            Pourtant, même au cœur de cette obscurité totale, persiste une forme de lucidité redoutable. Ceux qui ont regardé le néant en face et qui ont survécu à son étreinte ne voient plus jamais le monde de la même manière. Ils savent que les façades s'effondrent, que les certitudes des autres sont illusoires, et que sous la surface de l'agitation humaine, la réalité est fragile. La dépression, lorsqu'elle est traversée, enseigne l'art de la survie sans artifice.
+        </p>
+
+        <div class="footer-action">
+            <button class="action-btn" onclick="switchPage('page-cover')">REJOUER L'INTRODUCTION</button>
+        </div>
+    </main>
+
+    <!-- PAGE 7 : LES PERSONNES SILENCIEUSES SONT FORTES -->
+    <main id="page-strong" class="page-container">
+        <div class="nav-bar">
+            <button class="nav-btn box-link" onclick="switchPage('page-box')">[ BOÎTE ]</button>
+            <button class="nav-btn" onclick="switchPage('page-manifesto')">01. MANIFESTE</button>
+            <button class="nav-btn" onclick="switchPage('page-wealth')">02. RICHESSE</button>
+            <button class="nav-btn" onclick="switchPage('page-letter')">03. LETTRE</button>
+            <button class="nav-btn" onclick="switchPage('page-crime')">04. PROTOCOLE</button>
+            <button class="nav-btn" onclick="switchPage('page-entity')">05. L'ENTITÉ</button>
+            <button class="nav-btn" onclick="switchPage('page-depression')">06. DÉPRESSION</button>
+            <button class="nav-btn active" onclick="switchPage('page-strong')">07. SILENCE</button>
+        </div>
+
+        <h2 class="void-title">[ THE NOT ONE — LA PUISSANCE DU SILENCE ]</h2>
+
+        <p class="void-text">
+            Dans une société qui confond le bruit avec la puissance et l'agitation avec l'efficacité, ceux qui se taisent sont souvent sous-estimés. On prend leur silence pour de la faiblesse, leur retrait pour de la timidité, et leur observation pour de l'indifférence. C'est la plus grande erreur que commettent ceux qui ont besoin de parler pour exister.
+        </p>
+
+        <p class="void-text">
+            Les personnes silencieuses sont les plus fortes précisément parce qu'elles n'épuisent pas leur énergie à justifier chaque geste ni à chercher l'approbation de la foule. Pendant que les autres commentent, s'agitent et font du bruit pour occuper l'espace, le silencieux analyse, absorbe et comprend les mécaniques cachées. Sa force ne réside pas dans le volume de sa voix, mais dans sa capacité à rester inébranlable au milieu du chaos.
+        </p>
+
+        <p class="void-text">
+            Le vacarme appartient à ceux qui doutent et qui ont peur du vide. Le silence, quant à lui, appartient à ceux qui maîtrisent leur esprit. Quand une personne silencieuse décide enfin d'agir ou de parler, son impact est chirurgical, car chaque mot ou chaque acte est mûri dans la pénombre de la réflexion. C'est l'essence même de l'entité invisible : ne jamais faire de bruit pour rien, mais frapper ou bâtir avec une précision absolue.
+        </p>
+
+        <div class="footer-action">
+            <button class="action-btn" onclick="switchPage('page-cover')">REJOUER L'INTRODUCTION</button>
         </div>
     </main>
 
@@ -256,7 +499,16 @@
         const introText = document.getElementById('intro-text');
         const boxStage = document.getElementById('box-stage');
         const cardboardBox = document.getElementById('cardboard-box');
-        const voidContent = document.getElementById('void-content');
+        
+        const pages = {
+            'page-manifesto': document.getElementById('page-manifesto'),
+            'page-wealth': document.getElementById('page-wealth'),
+            'page-letter': document.getElementById('page-letter'),
+            'page-crime': document.getElementById('page-crime'),
+            'page-entity': document.getElementById('page-entity'),
+            'page-depression': document.getElementById('page-depression'),
+            'page-strong': document.getElementById('page-strong')
+        };
 
         function startSequence() {
             setTimeout(() => {
@@ -273,24 +525,38 @@
 
             setTimeout(() => {
                 boxStage.classList.remove('visible');
-                voidContent.classList.add('visible');
-                window.scrollTo(0, 0);
+                switchPage('page-manifesto');
             }, 450);
         }
 
-        function replayAll() {
-            voidContent.classList.remove('visible');
+        function switchPage(targetId) {
+            introScreen.style.opacity = '0';
+            introScreen.style.visibility = 'hidden';
             boxStage.classList.remove('visible');
-            cardboardBox.classList.remove('shake-open');
 
-            introScreen.style.visibility = 'visible';
-            introScreen.style.opacity = '1';
+            // Masquer toutes les pages du contenu
+            Object.keys(pages).forEach(id => {
+                pages[id].classList.remove('visible');
+            });
 
-            introText.style.animation = 'none';
-            introText.offsetHeight;
-            introText.style.animation = 'growFromNothing 6s cubic-bezier(0.15, 0.85, 0.35, 1) forwards';
+            if (targetId === 'page-cover') {
+                // Rejouer toute l'intro de zéro
+                cardboardBox.classList.remove('shake-open');
+                introScreen.style.visibility = 'visible';
+                introScreen.style.opacity = '1';
 
-            startSequence();
+                introText.style.animation = 'none';
+                introText.offsetHeight;
+                introText.style.animation = 'growFromNothing 6s cubic-bezier(0.15, 0.85, 0.35, 1) forwards';
+                startSequence();
+            } else if (targetId === 'page-box') {
+                // Afficher directement la boîte interactive
+                cardboardBox.classList.remove('shake-open');
+                boxStage.classList.add('visible');
+            } else if (pages[targetId]) {
+                pages[targetId].classList.add('visible');
+                window.scrollTo(0, 0);
+            }
         }
 
         window.addEventListener('DOMContentLoaded', startSequence);
