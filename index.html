@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The not ONE</title>
+    <!-- Import d'une police brute / typewriter style -->
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        /* Reset et ambiance sombre absolue */
         * {
             margin: 0;
             padding: 0;
@@ -15,9 +16,9 @@
         body, html {
             width: 100%;
             height: 100%;
-            background-color: #050505;
+            background-color: #030303;
             color: #F5F5F7;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Courier Prime', Courier, monospace;
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -25,7 +26,6 @@
             user-select: none;
         }
 
-        /* Écran d'introduction (le vide) */
         #intro-screen {
             position: fixed;
             inset: 0;
@@ -34,56 +34,59 @@
             justify-content: center;
             align-items: center;
             z-index: 10;
-            transition: opacity 1.5s ease-out, visibility 1.5s ease-out;
+            transition: opacity 2s ease-out, visibility 2s ease-out;
         }
 
-        /* Le texte qui s'agrandit */
+        /* Texte qui part de l'infiniment petit et invisible */
         #intro-text {
-            font-size: clamp(1.2rem, 3vw, 2.5rem);
+            font-size: clamp(1.5rem, 4vw, 3rem);
             font-weight: 400;
-            letter-spacing: 0.35em;
-            color: #F5F5F7;
-            text-shadow: 0 0 15px rgba(245, 245, 247, 0.25);
+            letter-spacing: 0.4em;
+            color: #E0E0E0;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
             opacity: 0;
-            transform: scale(0.6);
-            animation: expandIntoVoid 4.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            transform: scale(0.01);
+            animation: emergeFromVoid 7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         #intro-text span {
             font-weight: 700;
-            letter-spacing: 0.45em;
-            color: #ffffff;
-            text-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.5em;
+            color: #FFFFFF;
+            text-shadow: 0 0 35px rgba(255, 255, 255, 0.4);
         }
 
-        /* Animation d'agrandissement et de dissolution */
-        @keyframes expandIntoVoid {
+        /* Animation lente : surgit de nulle part et grandit jusqu'à sa taille normale */
+        @keyframes emergeFromVoid {
             0% {
                 opacity: 0;
-                transform: scale(0.5);
+                transform: scale(0.005);
+                filter: blur(15px);
+            }
+            15% {
+                opacity: 0.2;
                 filter: blur(8px);
             }
-            30% {
+            50% {
                 opacity: 1;
                 filter: blur(0px);
             }
-            75% {
+            85% {
                 opacity: 1;
-                transform: scale(1.65);
+                transform: scale(1);
                 filter: blur(0px);
             }
             100% {
                 opacity: 0;
-                transform: scale(2.2);
-                filter: blur(12px);
+                transform: scale(1.15);
+                filter: blur(8px);
             }
         }
 
-        /* Contenu principal après l'ouverture */
         #void-content {
             text-align: center;
             opacity: 0;
-            transition: opacity 2s ease-in;
+            transition: opacity 2.5s ease-in;
             padding: 20px;
         }
 
@@ -92,39 +95,37 @@
         }
 
         .subtitle {
-            font-size: 0.9rem;
-            color: #555555;
-            letter-spacing: 0.2em;
-            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #444444;
+            letter-spacing: 0.25em;
+            margin-bottom: 2.5rem;
         }
 
         .replay-btn {
             background: transparent;
-            border: 1px solid #222222;
-            color: #666666;
+            border: 1px solid #1a1a1a;
+            color: #555555;
             padding: 8px 18px;
             font-family: inherit;
             font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            letter-spacing: 0.2em;
+      v      cursor: pointer;
+            transition: all 0.4s ease;
         }
 
         .replay-btn:hover {
-            border-color: #F5F5F7;
-            color: #F5F5F7;
-            box-shadow: 0 0 12px rgba(245, 245, 247, 0.15);
+            border-color: #E0E0E0;
+            color: #E0E0E0;
+            box-shadow: 0 0 15px rgba(245, 245, 247, 0.1);
         }
     </style>
 </head>
 <body>
 
-    <!-- Écran d'ouverture -->
     <div id="intro-screen">
         <h1 id="intro-text">The not <span>ONE</span></h1>
     </div>
 
-    <!-- Ce qui apparaît une fois le vide ouvert -->
     <main id="void-content">
         <p class="subtitle">[ 0x00 — NOTHING HERE ]</p>
         <button class="replay-btn" onclick="replayIntro()">REPLAY</button>
@@ -136,12 +137,12 @@
         const voidContent = document.getElementById('void-content');
 
         function startSequence() {
-            // Fin de l'animation après 3.8 secondes
+            // Correspond à la durée totale avant la disparition (environ 6.5 secondes)
             setTimeout(() => {
                 introScreen.style.opacity = '0';
                 introScreen.style.visibility = 'hidden';
                 voidContent.classList.add('visible');
-            }, 3800);
+            }, 6500);
         }
 
         function replayIntro() {
@@ -149,15 +150,13 @@
             introScreen.style.visibility = 'visible';
             introScreen.style.opacity = '1';
 
-            // Réinitialise l'animation CSS
             introText.style.animation = 'none';
-            introText.offsetHeight; /* Force le navigateur à recalculer */
-            introText.style.animation = 'expandIntoVoid 4.2s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+            introText.offsetHeight; 
+            introText.style.animation = 'emergeFromVoid 7s cubic-bezier(0.16, 1, 0.3, 1) forwards';
 
             startSequence();
         }
 
-        // Lancement automatique à l'ouverture
         window.addEventListener('DOMContentLoaded', startSequence);
     </script>
 </body>
