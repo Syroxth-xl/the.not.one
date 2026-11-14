@@ -14,15 +14,10 @@
 
         body, html {
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             background-color: #030303;
             color: #F5F5F7;
             font-family: 'Courier Prime', Courier, monospace;
-            overflow-x: hidden;
-            overflow-y: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             user-select: none;
         }
 
@@ -146,7 +141,7 @@
             filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.9));
         }
 
-        /* --- ÉCRAN 3 : CONTENU DE LA PAGE (TEXTE SUR LE VIDE) --- */
+        /* --- ÉCRAN 3 : CONTENU RÉVÉLÉ (TEXTE DÉFILABLE) --- */
         #void-content {
             width: 100%;
             max-width: 750px;
@@ -155,7 +150,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 1.8s ease-in;
-            padding: 60px 20px;
+            padding: 80px 20px;
             display: none;
         }
 
@@ -169,31 +164,31 @@
             font-size: 1.1rem;
             letter-spacing: 0.4em;
             color: #FFFFFF;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             text-align: center;
             font-weight: 700;
         }
 
         .void-text {
             font-size: 0.9rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: #A0A0A5;
             letter-spacing: 0.08em;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             text-align: justify;
         }
 
         .footer-action {
             text-align: center;
-            margin-top: 4rem;
-            padding-bottom: 2rem;
+            margin-top: 5rem;
+            padding-bottom: 4rem;
         }
 
         .replay-btn {
             background: transparent;
             border: 1px solid #222222;
             color: #666666;
-            padding: 8px 18px;
+            padding: 10px 22px;
             font-family: inherit;
             font-size: 0.75rem;
             letter-spacing: 0.2em;
